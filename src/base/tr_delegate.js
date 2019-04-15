@@ -1,6 +1,3 @@
-var crypto = require("./crypto.js.js")
-var constants = require("../lib/constants.js")
-var slots = require("../lib/time/slots.js")
 
 class Delegate {
     static calculateFee() {
@@ -9,7 +6,7 @@ class Delegate {
 
     static create(data, tr) {
         tr.recipientId = "A4MFB3MaPd355ug19GYPMSakCAWKbLjDTb";//TODO:零时添加以后换成基金会地址
-        tr.amount = 1000 * constants.fixedPoint;
+        tr.amount = 1000 * 100000000;
         tr.asset.delegate = {
             username: data.username,
             publicKey: data.sender.publicKey

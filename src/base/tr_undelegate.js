@@ -1,6 +1,3 @@
-var crypto = require("./crypto.js.js")
-var constants = require("../lib/constants.js")
-var slots = require("../lib/time/slots.js")
 
 class Delegate {
     static calculateFee() {
