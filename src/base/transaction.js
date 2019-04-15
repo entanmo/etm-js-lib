@@ -5,8 +5,8 @@ const slots = require('../../src/utils/slots.js');
 const ed = require('../../src/utils/ed.js');
 
 const transfer = require("./tr_transfer");
-const delegate = require("./tr_delagate");
-const undelegate = require("./tr_undelagate");
+const delegate = require("./tr_delegate");
+const undelegate = require("./tr_undelegate");
 const lock = require("./tr_lock");
 const unlock = require("./tr_unlock");
 const vote = require("./tr_vote");

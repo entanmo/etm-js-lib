@@ -20,11 +20,11 @@ class Delegate {
     }
 
     static getBytes(tr) {
-        if (!trs.asset.delegate.username) {
+        if (!tr.asset.delegate.username) {
             return null;
         }
         try {
-            var buf = new Buffer(trs.asset.delegate.username, 'utf8');
+            var buf = new Buffer(tr.asset.delegate.username, 'utf8');
         } catch (e) {
             throw Error(e.toString());
         }

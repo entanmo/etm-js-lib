@@ -7,8 +7,8 @@ class Unlock {
     }
 
     static create(data, tr) {
-        trs.args = data.args;
-        return trs;
+        tr.args = data.args;
+        return tr;
     }
 
     static getBytes(tr) {
