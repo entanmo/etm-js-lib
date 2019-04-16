@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const ByteBuffer = require("bytebuffer");
 
 const slots = require('../../src/utils/slots.js');
-const ed = require('../../src/utils/ed.js');
+const ed = require('../../src/utils/ed-nacl.js');
 
 const transfer = require("./tr_transfer");
 const delegate = require("./tr_delegate");
@@ -27,6 +27,16 @@ const o_trsTypes = {
 }
 
 class Transaction {
+
+    static createTransaction(data) {
+        let hash = crypto.createHash('sha256').update(data.secret, 'utf8').digest();
+        let keypair = ed.MakeKeypair(hash);
+        data.sender = {
+            publicKey: keypair.publicKey.toString('hex')
+        }
+        data.keypair = keypair;
+        Transaction.create(data);
+    }
 
     static create(data) {
         if (!data.sender) {
