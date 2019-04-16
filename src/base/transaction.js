@@ -96,14 +96,14 @@ class Transaction {
                 }
             }
 
-            if (tr.recipientAddress) {
-                if (/^[0-9]{1,20}$/g.test(tr.recipientAddress)) {
-                    let recipient = bignum(tr.recipientAddress).toBuffer({ size: 8 });
+            if (tr.recipientId) {
+                if (/^[0-9]{1,20}$/g.test(tr.recipientId)) {
+                    let recipient = bignum(tr.recipientId).toBuffer({ size: 8 });
                     for (let i = 0; i < 8; i++) {
                         bb.writeByte(recipient[i] || 0);
                     }
                 } else {
-                    bb.writeString(tr.recipientAddress);
+                    bb.writeString(tr.recipientId);
                 }
             } else {
                 for (let i = 0; i < 8; i++) {
@@ -149,7 +149,7 @@ class Transaction {
     }
 
     static getHash(tr) {
-        return crypto.createHash('sha256').update(Transaction.getBytes(tr)).digest();
+        return crypto.createHash('sha256').update(new Uint8Array(Transaction.getBytes(tr))).digest();
 
     }
 
@@ -164,7 +164,7 @@ class Transaction {
 
     static getMultiSignature(tr, keypair) {
         let bytes = Transaction.getBytes(tr, true, true);
-        let hash = crypto.createHash('sha256').update(bytes).digest();
+        let hash = crypto.createHash('sha256').update(new Uint8Array(bytes)).digest();
         return ed.Sign(hash, keypair).toString('hex');
     }
 

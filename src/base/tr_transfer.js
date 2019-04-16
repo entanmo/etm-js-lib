@@ -7,7 +7,7 @@ class Transfer {
     }
 
     static create(data, tr) {
-        tr.recipientAddress = data.recipientAddress;
+        tr.recipientId = data.recipientId;
         tr.amount = data.amount;
 
         return tr;
