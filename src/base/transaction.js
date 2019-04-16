@@ -35,7 +35,7 @@ class Transaction {
             publicKey: keypair.publicKey.toString('hex')
         }
         data.keypair = keypair;
-        Transaction.create(data);
+        return Transaction.create(data);
     }
 
     static create(data) {
