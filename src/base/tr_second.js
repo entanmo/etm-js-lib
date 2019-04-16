@@ -1,3 +1,4 @@
+const ByteBuffer = require("bytebuffer");
 
 class Second {
 
@@ -6,12 +7,28 @@ class Second {
     }
 
     static create(data, tr) {
-        tr.args = data.args;
+        tr.recipientId = null;
+        tr.amount = 0;
+        tr.asset.signature = {
+            publicKey: data.secondKeypair.publicKey.toString('hex')
+        };
         return tr;
     }
 
     static getBytes(tr) {
-        return null;
+        try {
+            var bb = new ByteBuffer(32, true);
+            var publicKeyBuffer = new Buffer(trs.asset.signature.publicKey, 'hex');
+
+            for (var i = 0; i < publicKeyBuffer.length; i++) {
+                bb.writeByte(publicKeyBuffer[i]);
+            }
+
+            bb.flip();
+        } catch (e) {
+            throw Error(e.toString());
+        }
+        return bb.toBuffer();
     }
 
     static getHash() {
