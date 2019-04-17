@@ -68,7 +68,16 @@ class Transaction {
         let bytes;
         try {
             let assetBytes = o_trsTypes[tr.type].getBytes.call(Transaction, tr, skipSignature, skipSecondSignature);
-            let assetSize = assetBytes ? assetBytes.length : 0;
+            let assetSize = 0;
+            if (assetBytes) {
+                if (assetBytes instanceof ArrayBuffer) {
+                    assetSize = assetBytes.byteLength;
+                }
+                else {
+                    assetSize = assetBytes.length;
+                }
+            }
+            // let assetSize = assetBytes ? assetBytes.length : 0;
 
             let bb = new ByteBuffer(size + assetSize, true);
             bb.writeByte(tr.type);
