@@ -120,8 +120,10 @@ class Transaction {
             }
 
             if (assetSize > 0) {
+                let arr = new Uint8Array(assetBytes);
+
                 for (let i = 0; i < assetSize; i++) {
-                    bb.writeByte(assetBytes[i]);
+                    bb.writeByte(arr[i]);
                 }
             }
 
