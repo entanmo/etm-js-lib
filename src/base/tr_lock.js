@@ -2,10 +2,6 @@
 
 class Lock {
 
-    static calculateFee() {
-        return 10000000;
-    }
-
     static create(data, tr) {
         tr.asset.lock = {
             locks: data.locks

@@ -2,10 +2,6 @@ const ByteBuffer = require("bytebuffer");
 
 class Second {
 
-    static calculateFee() {
-        return 500000000;
-    }
-
     static create(data, tr) {
         tr.recipientId = null;
         tr.amount = 0;

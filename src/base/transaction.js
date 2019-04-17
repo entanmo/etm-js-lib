@@ -50,7 +50,7 @@ class Transaction {
         let tr = {
             type: data.type,
             amount: 0,
-            fee: data.isGenesis ? 0 : o_trsTypes[data.type].calculateFee.call(this),
+            fee: data.fee,
             timestamp: slots.getTime(),
             senderPublicKey: data.sender.publicKey ? data.sender.publicKey.toString('hex') : "",
             asset: {},

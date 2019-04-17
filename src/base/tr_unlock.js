@@ -2,10 +2,6 @@
 
 class Unlock {
 
-    static calculateFee() {
-        return 10000000;
-    }
-
     static create(data, tr) {
         tr.args = data.args;
         return tr;

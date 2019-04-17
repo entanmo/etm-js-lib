@@ -1,8 +1,5 @@
 
 class Delegate {
-    static calculateFee() {
-        return 10000000;
-    }
 
     static create(data, tr) {
         tr.recipientId = "A4MFB3MaPd355ug19GYPMSakCAWKbLjDTb";//TODO:零时添加以后换成基金会地址

@@ -2,10 +2,6 @@
 
 class Delay {
 
-    static calculateFee() {
-        return 10000000;
-    }
-
     static create(data, tr) {
         tr.recipientId = data.recipientId;
         tr.amount = data.amount;

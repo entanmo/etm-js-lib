@@ -1,8 +1,5 @@
 
 class Delegate {
-    static calculateFee() {
-        return 10000000;
-    }
 
     static create(data, tr) {
         tr.recipientId = null;
