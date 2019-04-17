@@ -50,7 +50,8 @@ class Transaction {
         tr = o_trsTypes[tr.type].create.call(Transaction, data, tr);
         tr.signature = Transaction.getSignature(tr, data.keypair);
 
-        if (data.sender.secondSignature && data.secondKeypair) {
+        // if (data.sender.secondSignature && data.secondKeypair) {
+        if (tr.type !== 1 && data.secondKeypair) {
             tr.signSignature = Transaction.getSignature(tr, data.secondKeypair);
         }
 
