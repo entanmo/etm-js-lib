@@ -30,11 +30,18 @@ let createTransaction = (data) => {
 //     secondKeypair
 // })
 
+// let tr = createTransaction({
+//     type: 3,
+//     secret: "worry net spend unfold desert trust dove waste grain people swap twelve",
+//     votes: ["+c6b1f18afa85a21df50cf9580c63c0aca4643a4a4e4ec93c2e397c81e87879b9"],
+//     fee: 10000000
+// })
+
 let tr = createTransaction({
-    type: 3,
+    type: 101,
     secret: "worry net spend unfold desert trust dove waste grain people swap twelve",
-    votes: ["+c6b1f18afa85a21df50cf9580c63c0aca4643a4a4e4ec93c2e397c81e87879b9"],
-    fee: 10000000
+    fee: 10000000,
+    args: ["100000000"]
 })
 
 console.log(JSON.stringify(tr))
