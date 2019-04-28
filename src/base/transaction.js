@@ -29,6 +29,10 @@ const o_trsTypes = {
 class Transaction {
 
     static create(data) {
+        if (!o_trsTypes[data.type]) {
+            throw Error('Unknown transaction type ' + data.type);
+        }
+
         if (!data.sender) {
             throw Error("Can't find sender");
         }
@@ -40,7 +44,8 @@ class Transaction {
         let tr = {
             type: data.type,
             amount: 0,
-            fee: data.fee,
+            // fee: data.isGenesis ? 0 : o_trsTypes[data.type].calculateFee.call(this),
+            fee: data.fee || 0,
             timestamp: slots.getTime(),
             senderPublicKey: data.sender.publicKey ? data.sender.publicKey.toString('hex') : "",
             asset: {},
@@ -78,7 +83,6 @@ class Transaction {
                     assetSize = assetBytes.length;
                 }
             }
-            // let assetSize = assetBytes ? assetBytes.length : 0;
 
             let bb = new ByteBuffer(size + assetSize, true);
             bb.writeByte(tr.type);
@@ -147,10 +151,13 @@ class Transaction {
         } catch (e) {
             throw Error(e.toString());
         }
+
         return bytes;
     }
 
     static getHash(tr) {
+        let bytes = new Uint8Array(Transaction.getBytes(tr))
+        let hash = crypto.createHash('sha256').update(bytes).digest();
         return crypto.createHash('sha256').update(new Uint8Array(Transaction.getBytes(tr))).digest();
 
     }
@@ -161,15 +168,16 @@ class Transaction {
 
     static getSignature(tr, keypair) {
         let hash = Transaction.getHash(tr);
-        return ed.Sign(hash, keypair).toString('hex');
+        let sign = ed.Sign(hash, keypair).toString('hex');
+        return sign;
     }
 
     static getMultiSignature(tr, keypair) {
         let bytes = Transaction.getBytes(tr, true, true);
         let hash = crypto.createHash('sha256').update(new Uint8Array(bytes)).digest();
-        return ed.Sign(hash, keypair).toString('hex');
+        let sign = ed.Sign(hash, keypair).toString('hex');
+        return sign;
     }
-
 
 }
 

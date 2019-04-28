@@ -14,23 +14,6 @@
 
 'use strict';
 
-function beginEpochTime() {
-  var d = new Date(Date.UTC(2018, 9, 12, 12, 0, 0, 0));//月份从0开始，小时相隔8
-
-  return d;
-}
-
-function getEpochTime(time) {
-  if (time === undefined) {
-    time = (new Date()).getTime();
-    // const milliseconds = global.library.synctime.now();
-    // time = (new Date(milliseconds)).getTime();
-  }
-  var d = beginEpochTime();
-  var t = d.getTime();
-  return Math.floor((time - t) / 1000);
-}
-
 module.exports = {
 
   interval: 3,      // 出块时间
@@ -43,15 +26,28 @@ module.exports = {
 
   powTimeOut: 2,   // pow超时时间（单位s）
 
+  beginEpochTime() {
+    var d = new Date(Date.UTC(2018, 9, 12, 12, 0, 0, 0));//月份从0开始，小时相隔8
+
+    return d;
+  },
+
   getTime: function (time) {
-    return getEpochTime(time);
+    if (time === undefined) {
+      time = (new Date()).getTime();
+      // const milliseconds = global.library.synctime.now();
+      // time = (new Date(milliseconds)).getTime();
+    }
+    var d = this.beginEpochTime();
+    var t = d.getTime();
+    return Math.floor((time - t) / 1000);
   },
 
   getRealTime: function (epochTime) {
     if (epochTime === undefined) {
       epochTime = this.getTime()
     }
-    var d = beginEpochTime();
+    var d = this.beginEpochTime();
     var t = Math.floor(d.getTime() / 1000) * 1000;
     return t + epochTime * 1000;
   },
@@ -78,7 +74,7 @@ module.exports = {
   },
 
   roundTime: function (date) {
-    Math.floor(date.getTime() / 1000) * 1000
+    return Math.floor(date.getTime() / 1000) * 1000
   },
 
   getHeightPerDay: function () {

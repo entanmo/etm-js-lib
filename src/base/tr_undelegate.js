@@ -12,22 +12,6 @@ class Delegate {
         return null;
     }
 
-    static getHash() {
-        return null;
-    }
-
-    static getId() {
-        return null;
-    }
-
-    static getSignature() {
-        return null;
-    }
-
-    static getMultiSignature() {
-        return null;
-    }
-
 }
 
 module.exports = Delegate;

@@ -10,7 +10,7 @@ let createTransaction = (data) => {
         publicKey: keypair.publicKey.toString('hex')
     }
     data.keypair = keypair;
-    return Transaction.create(data);
+    return trs.create(data);
 }
 
 // let tr = createTransaction({
@@ -21,13 +21,20 @@ let createTransaction = (data) => {
 // })
 
 
-var secondHash = crypto.createHash('sha256').update("asd", 'utf8').digest();
-var secondKeypair = ed.MakeKeypair(secondHash);
+// var secondHash = crypto.createHash('sha256').update("asd", 'utf8').digest();
+// var secondKeypair = ed.MakeKeypair(secondHash);
+// let tr = createTransaction({
+//     type: 1,
+//     secret: "immense buffalo organ pond illegal erupt prepare arrow cliff fit abstract task",
+//     secondSecret: "asd",
+//     secondKeypair
+// })
+
 let tr = createTransaction({
-    type: 1,
-    secret: "immense buffalo organ pond illegal erupt prepare arrow cliff fit abstract task",
-    secondSecret: "asd",
-    secondKeypair
+    type: 3,
+    secret: "worry net spend unfold desert trust dove waste grain people swap twelve",
+    votes: ["+c6b1f18afa85a21df50cf9580c63c0aca4643a4a4e4ec93c2e397c81e87879b9"],
+    fee: 10000000
 })
 
 console.log(JSON.stringify(tr))
