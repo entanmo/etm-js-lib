@@ -4,15 +4,22 @@ const ByteBuffer = require("bytebuffer");
 const slots = require('../../src/utils/slots.js');
 const ed = require('../../src/utils/ed-nacl.js');
 
-const transfer = require("./tr_transfer");
-const delegate = require("./tr_delegate");
-const undelegate = require("./tr_undelegate");
-const lock = require("./tr_lock");
-const unlock = require("./tr_unlock");
-const vote = require("./tr_vote");
+const transfer = require("./transactions/tr_transfer");
+const delegate = require("./transactions/tr_delegate");
+const undelegate = require("./transactions/tr_undelegate");
+const lock = require("./transactions/tr_lock");
+const unlock = require("./transactions/tr_unlock");
+const vote = require("./transactions/tr_vote");
 const delay = require("./tr_delay");
-const second = require("./tr_second");
-const multi = require("./tr_multi");
+const second = require("./transactions/tr_second");
+const multi = require("./transactions/tr_multi");
+
+const uia_issuer = require("./transactions/tr_uia_issuer");
+const uia_asset = require("./transactions/tr_uia_asset");
+const uia_flags = require("./transactions/tr_uia_flags");
+const uia_acl = require("./transactions/tr_uia_acl");
+const uia_issue = require("./transactions/tr_uia_issue");
+const uia_transfer = require("./transactions/tr_uia_transfer");
 
 const o_trsTypes = {
     0: transfer,
@@ -24,6 +31,12 @@ const o_trsTypes = {
     110: delay,
     1: second,
     4: multi,
+    9: uia_issuer,
+    10: uia_asset,
+    11: uia_flags,
+    12: uia_acl,
+    13: uia_issue,
+    14: uia_transfer
 }
 
 class Transaction {

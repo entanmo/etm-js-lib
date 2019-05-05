@@ -21,20 +21,6 @@ const NORMAL_PREFIX = 'A' // A
 
 module.exports = {
   isAddress: function (address) {
-    /*
-    if (typeof address !== 'string') {
-      return false
-    }
-    if (!/^[0-9]{1,20}$/g.test(address)) {
-      if (!base58check.decodeUnsafe(address.slice(1))) {
-        return false
-      }
-      if (['A'].indexOf(address[0]) == -1) {
-        return false
-      }
-    }
-    return true
-    */
     return this.isBase58CheckAddress(address);
   },
 
@@ -45,7 +31,8 @@ module.exports = {
     if (!base58check.decodeUnsafe(address.slice(1))) {
       return false
     }
-    if (['A'].indexOf(address[0]) == -1) {
+    if (!address.startsWith('A')) {
+      // if (['A'].indexOf(address[0]) == -1) {
       return false
     }
     return true
