@@ -1,3 +1,4 @@
+const ByteBuffer = require("bytebuffer");
 
 class UiaAcl {
 

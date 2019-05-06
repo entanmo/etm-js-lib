@@ -1,3 +1,4 @@
+const ByteBuffer = require("bytebuffer");
 
 class UiaFlags {
 

@@ -10,7 +10,7 @@ const undelegate = require("./transactions/tr_undelegate");
 const lock = require("./transactions/tr_lock");
 const unlock = require("./transactions/tr_unlock");
 const vote = require("./transactions/tr_vote");
-const delay = require("./tr_delay");
+const delay = require("./transactions/tr_delay");
 const second = require("./transactions/tr_second");
 const multi = require("./transactions/tr_multi");
 
