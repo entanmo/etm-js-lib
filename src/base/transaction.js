@@ -59,7 +59,7 @@ class Transaction {
             amount: 0,
             // fee: data.isGenesis ? 0 : o_trsTypes[data.type].calculateFee.call(this),
             fee: data.fee || 0,
-            timestamp: slots.getTime(),
+            timestamp: data.timestamp || slots.getTime(),
             senderPublicKey: data.sender.publicKey ? data.sender.publicKey.toString('hex') : "",
             asset: {},
             args: data.args,
