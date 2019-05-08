@@ -1,6 +1,7 @@
 module.exports = {
     transaction: require("./src/base/transaction"),
     account: require("./src/base/account"),
+    block: require("./src/base/block"),
     crypto: require("crypto"),
     utils: {
         ed: require("./src/utils/ed-nacl"),
