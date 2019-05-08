@@ -171,7 +171,7 @@ class Transaction {
     static getHash(tr) {
         let bytes = new Uint8Array(Transaction.getBytes(tr))
         let hash = crypto.createHash('sha256').update(bytes).digest();
-        return crypto.createHash('sha256').update(new Uint8Array(Transaction.getBytes(tr))).digest();
+        return hash;
 
     }
 
