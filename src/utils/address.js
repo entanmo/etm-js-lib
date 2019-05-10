@@ -14,10 +14,11 @@
 
 'use strict';
 
-var crypto = require('crypto')
-var base58check = require('./base58check')
+const crypto = require('crypto');
+// const base58check = require('./base58check');
+const base58check = require("base58check");
 
-const NORMAL_PREFIX = 'A' // A
+const NORMAL_PREFIX = 'A'; // A
 
 module.exports = {
   isAddress: function (address) {
@@ -26,24 +27,25 @@ module.exports = {
 
   isBase58CheckAddress: function (address) {
     if (typeof address !== 'string') {
-      return false
+      return false;
     }
     if (!base58check.decodeUnsafe(address.slice(1))) {
-      return false
+      return false;
     }
     if (!address.startsWith('A')) {
       // if (['A'].indexOf(address[0]) == -1) {
-      return false
+      return false;
     }
-    return true
+    return true;
   },
 
   generateBase58CheckAddress: function (publicKey) {
     if (typeof publicKey === 'string') {
-      publicKey = Buffer.from(publicKey, 'hex')
+      publicKey = Buffer.from(publicKey, 'hex');
     }
-    var h1 = crypto.createHash('sha256').update(publicKey).digest()
-    var h2 = crypto.createHash('ripemd160').update(h1).digest()
-    return NORMAL_PREFIX + base58check.encode(h2)
+    var h1 = crypto.createHash('sha256').update(publicKey).digest();
+    var h2 = crypto.createHash('ripemd160').update(h1).digest();
+    // return NORMAL_PREFIX + base58check.encode(h2);
+    return NORMAL_PREFIX + base58check.encode(h2, "");//默认 prefix = '00'
   },
 }
