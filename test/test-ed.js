@@ -1,4 +1,4 @@
-const ed1 = require("../src/utils/ed");
+// const ed1 = require("../src/utils/ed");
 const ed2 = require("../src/utils/ed-nacl");
 const crypto = require('crypto');
 
@@ -26,12 +26,14 @@ function test_ed() {
 
     let keypair = ed2.MakeKeypair(hash);
     console.log(keypair);
+    console.log(keypair.publicKey.toString("hex"));
+    console.log(keypair.privateKey.toString("hex"));
 
-    let h = crypto.createHash('sha256').update("abc").digest();
-    let sign = ed2.Sign(h, keypair);
+    // let h = crypto.createHash('sha256').update("abc").digest();
+    let sign = ed2.Sign(hash, keypair);
     console.log(sign.toString("hex"));
 
-    console.log(ed2.Verify(h, sign, keypair.publicKey))
+    console.log(ed2.Verify(hash, sign, keypair.publicKey))
 }
 
 test_ed()
