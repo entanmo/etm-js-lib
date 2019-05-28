@@ -25,7 +25,7 @@ previousBlock = {
 
 let newblock = block.create({
     keypair,
-    timestamp: slots.getTime(),
+    timestamp: 17961582,//slots.getTime(),
     previousBlock,
     transactions: []
 })

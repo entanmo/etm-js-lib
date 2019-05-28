@@ -48,6 +48,10 @@ function BlockStatus() {
 
     this.calcSupply = function (height) {
         let m_height = parseHeight(height);
+        if (m_height > lastRewardHeight) {//超出最后奖励高度不计算
+            m_height = lastRewardHeight;
+        }
+
         m_height -= m_height % slots.delegates;
         let milestone = this.calcMilestone(m_height);
         let supply = constants.totalAmount;
@@ -75,18 +79,18 @@ function BlockStatus() {
                 break; // Milestone out of bounds
             }
         }
-        if (m_height > 0) {
-            rewards.push([m_height, milestones[milestones.length - 1]]);
-        }
+        // if (m_height > 0) {
+        //     rewards.push([m_height, milestones[milestones.length - 1]]);
+        // }
 
         for (let i = 0; i < rewards.length; i++) {
             let reward = rewards[i];
             supply += reward[0] * reward[1];
         }
 
-        if (rewardOffset <= 1) {
-            supply -= milestones[0];
-        }
+        // if (rewardOffset <= 1) {
+        //     supply -= milestones[0];
+        // }
 
         return supply;
     };
