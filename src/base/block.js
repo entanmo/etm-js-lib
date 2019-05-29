@@ -75,6 +75,8 @@ class Block {
         try {
             block.blockSignature = Block.getSignature(block, data.keypair);
             // block = self.normalize(block);
+            block.id = Block.getId(block);
+            block.height = nextHeight;
         } catch (e) {
             throw Error(e.toString());
         }
